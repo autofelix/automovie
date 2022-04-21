@@ -30,8 +30,9 @@ class ForumTopics extends Migrator
     {
         $table = $this->table('forum_topics', ['collation' => 'utf8mb4_general_ci']);
         $table->addColumn('name', 'string', ['limit' => 50, 'comment' => '名称'])
-            ->addColumn('cover', 'string', ['limit' => 255, 'default' => '', 'comment' => '封面，「https://www.seedmm.fun/forum/data/attachment/common/」'])
+            ->addColumn('cover', 'string', ['limit' => 255, 'default' => '', 'comment' => '封面，https://www.seedmm.fun/'])
             ->addColumn('desc', 'string', ['limit' => 255, 'default' => '', 'comment' => '描述'])
+            ->addColumn('p_id', 'integer', ['limit' => 11, 'default' => 0, 'comment' => '所属主题'])
             ->create();
     }
 }
