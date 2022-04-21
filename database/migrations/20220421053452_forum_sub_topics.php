@@ -30,7 +30,7 @@ class ForumSubTopics extends Migrator
     {
         $table = $this->table('forum_sub_topics', ['collation' => 'utf8mb4_general_ci']);
         $table->addColumn('name', 'string', ['limit' => 50, 'comment' => '名称'])
-            ->addColumn('cover', 'string', ['limit' => 255, 'default' => '', 'comment' => '封面'])
+            ->addColumn('cover', 'string', ['limit' => 255, 'default' => '', 'comment' => '封面，「https://www.seedmm.fun/forum/template/javbus/images/icon/」'])
             ->addColumn('topic_id', 'integer', ['limit' => 11, 'comment' => '父主题'])
             ->create();
     }
