@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+
+  {include file='layout/header'}
+
+<body class="">
+  <section class="vbox">
+    {include file='layout/nav'}
+    <section>
+      <section class="hbox stretch">
+        <!-- .aside -->
+        {include file='layout/siderbar'}
+        <!-- /.aside -->
+        <section id="content" class="bg-white">
+          <section class="vbox">
+            <section class="scrollable wrapper-lg">
+              <div class="row">
+                <div class="col-sm-9">
+                  <div class="blog-post">
+                    <div class="post-item">
+                      <div class="post-media">
+                        <img src="//www.seedmm.fun/pics/cover/{$movie.cover}" class="img-full">
+                      </div>
+                      <div class="caption wrapper-lg">
+                        <h2 class="post-title">{$movie.title}</h2>
+                        <div class="line line-lg"></div>
+                        <div class="text-muted">
+                          <i class="fa fa-clock-o icon-muted"></i> {$movie.publish_date}
+                          <a href="#" class="m-l-sm"><i class="fa fa-comment-o icon-muted"></i> 2 comments</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {if $movie.previews > 0}
+                  <div id="viewer-picture">
+                    {for start='1' end='$movie.previews'}
+                    <img src='//www.seedmm.fun/pics/sample/{:str_replace("_b", "_$i", $movie.cover)}' data-original='//www.seedmm.fun/pics/sample/{:str_replace("_b", "_$i", $movie.cover)}' alt="" width="100" style="margin: .5rem;">
+                    {/for}
+                  </div>
+                  {/if}
+                  {if count($magnetics) > 0}
+                  <section class="panel panel-default" style="margin-top: 1rem;">
+                    <header class="panel-heading">下载链接</header>
+                    <table class="table table-striped m-b-none">
+                      <thead>
+                        <tr>
+                          <th width="300">标题</th>
+                          <th>地址</th>
+                          <th>附加</th>
+                          <th>大小</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {foreach $magnetics as $magnetic}
+                        <tr>
+                          <td>{$magnetic.name}</td>
+                          <td>
+                            <div class="input-group m-b">
+                              <span class="input-group-addon">magnet:?xt=urn:btih:</span>
+                              <input type="text" class="form-control" value="{$magnetic.magnet}" disabled>
+                            </div>
+                          </td>
+                          <td>
+                            {if $magnetic.is_hd == 1}
+                            <span class="m-t-sm m-r-sm badge bg-info">HD</span>
+                            {/if}
+                            {if $magnetic.is_subtitle == 1}
+                            <span class="m-t-sm m-r-sm badge bg-light">CC</span>
+                            {/if}
+                          </td>
+                          <td>
+                            {$magnetic.size}
+                          </td>
+                          <td>
+                            <i class="icon-arrow-down" data-toggle="tooltip" data-placement="right"
+                              data-original-title="下载"></i>
+                          </td>
+                        </tr>
+                        {/foreach}
+                      </tbody>
+                    </table>
+                  </section>
+                  {/if}
+                  <section class="panel panel-default" style="margin-top: 2rem;">
+                    <header class="panel-heading font-bold">
+                      同类电影
+                    </header>
+                    <div class="row row-sm panel-body">
+                      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="item">
+                          <div class="pos-rlt">
+                            <div class="top">
+                              <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-success">新</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x bg-black">
+                              <div class="text-info padder m-t-sm text-sm">
+                                <i class="fa fa-star"></i> 评分：9.8
+                              </div>
+                              <div class="center text-center m-t-n">
+                                <a href="video-detail.html"><i class="icon-arrow-right i-2x"></i></a>
+                              </div>
+                              <div class="bottom padder m-b-sm">
+                                <a href="#" class="pull-right">
+                                  <i class="fa fa-heart-o"></i>
+                                </a>
+                                <a href="#">
+                                  <i class="fa fa-plus-circle"></i>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="top">
+                              <span class="pull-left m-t-n-xs m-r-sm text-danger">
+                                <i class="fa fa-bookmark i-lg"></i>
+                              </span>
+                            </div>
+                            <a href="#"><img src="images/p6.jpg" alt="" class="r r-2x img-full"></a>
+                          </div>
+                          <div class="padder-v">
+                            <a href="#" class="text-ellipsis">法大师傅看来你拒绝访问人分厘卡圣诞节罚款法大师傅看来你拒绝访问人分厘卡圣诞节罚款</a>
+                            <a href="#" class="text-ellipsis text-xs text-muted">
+                              <span class="pull-left"><i class="icon-badge"></i> HJKD-23</span>
+                              <span class="pull-right"><i class="icon-clock"></i> 2020/04/10</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="item">
+                          <div class="pos-rlt">
+                            <div class="top">
+                              <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-success">新</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x bg-black">
+                              <div class="text-info padder m-t-sm text-sm">
+                                <i class="fa fa-star"></i> 评分：9.8
+                              </div>
+                              <div class="center text-center m-t-n">
+                                <a href="video-detail.html"><i class="icon-arrow-right i-2x"></i></a>
+                              </div>
+                              <div class="bottom padder m-b-sm">
+                                <a href="#" class="pull-right">
+                                  <i class="fa fa-heart-o"></i>
+                                </a>
+                                <a href="#">
+                                  <i class="fa fa-plus-circle"></i>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="top">
+                              <span class="pull-left m-t-n-xs m-r-sm text-danger">
+                                <i class="fa fa-bookmark i-lg"></i>
+                              </span>
+                            </div>
+                            <a href="#"><img src="images/p6.jpg" alt="" class="r r-2x img-full"></a>
+                          </div>
+                          <div class="padder-v">
+                            <a href="#" class="text-ellipsis">法大师傅看来你拒绝访问人分厘卡圣诞节罚款法大师傅看来你拒绝访问人分厘卡圣诞节罚款</a>
+                            <a href="#" class="text-ellipsis text-xs text-muted">
+                              <span class="pull-left"><i class="icon-badge"></i> HJKD-23</span>
+                              <span class="pull-right"><i class="icon-clock"></i> 2020/04/10</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="item">
+                          <div class="pos-rlt">
+                            <div class="top">
+                              <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-success">新</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x bg-black">
+                              <div class="text-info padder m-t-sm text-sm">
+                                <i class="fa fa-star"></i> 评分：9.8
+                              </div>
+                              <div class="center text-center m-t-n">
+                                <a href="video-detail.html"><i class="icon-arrow-right i-2x"></i></a>
+                              </div>
+                              <div class="bottom padder m-b-sm">
+                                <a href="#" class="pull-right">
+                                  <i class="fa fa-heart-o"></i>
+                                </a>
+                                <a href="#">
+                                  <i class="fa fa-plus-circle"></i>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="top">
+                              <span class="pull-left m-t-n-xs m-r-sm text-danger">
+                                <i class="fa fa-bookmark i-lg"></i>
+                              </span>
+                            </div>
+                            <a href="#"><img src="images/p6.jpg" alt="" class="r r-2x img-full"></a>
+                          </div>
+                          <div class="padder-v">
+                            <a href="#" class="text-ellipsis">法大师傅看来你拒绝访问人分厘卡圣诞节罚款法大师傅看来你拒绝访问人分厘卡圣诞节罚款</a>
+                            <a href="#" class="text-ellipsis text-xs text-muted">
+                              <span class="pull-left"><i class="icon-badge"></i> HJKD-23</span>
+                              <span class="pull-right"><i class="icon-clock"></i> 2020/04/10</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="item">
+                          <div class="pos-rlt">
+                            <div class="top">
+                              <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-success">新</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x bg-black">
+                              <div class="text-info padder m-t-sm text-sm">
+                                <i class="fa fa-star"></i> 评分：9.8
+                              </div>
+                              <div class="center text-center m-t-n">
+                                <a href="video-detail.html"><i class="icon-arrow-right i-2x"></i></a>
+                              </div>
+                              <div class="bottom padder m-b-sm">
+                                <a href="#" class="pull-right">
+                                  <i class="fa fa-heart-o"></i>
+                                </a>
+                                <a href="#">
+                                  <i class="fa fa-plus-circle"></i>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="top">
+                              <span class="pull-left m-t-n-xs m-r-sm text-danger">
+                                <i class="fa fa-bookmark i-lg"></i>
+                              </span>
+                            </div>
+                            <a href="#"><img src="images/p6.jpg" alt="" class="r r-2x img-full"></a>
+                          </div>
+                          <div class="padder-v">
+                            <a href="#" class="text-ellipsis">法大师傅看来你拒绝访问人分厘卡圣诞节罚款法大师傅看来你拒绝访问人分厘卡圣诞节罚款</a>
+                            <a href="#" class="text-ellipsis text-xs text-muted">
+                              <span class="pull-left"><i class="icon-badge"></i> HJKD-23</span>
+                              <span class="pull-right"><i class="icon-clock"></i> 2020/04/10</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="item">
+                          <div class="pos-rlt">
+                            <div class="top">
+                              <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-success">新</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x bg-black">
+                              <div class="text-info padder m-t-sm text-sm">
+                                <i class="fa fa-star"></i> 评分：9.8
+                              </div>
+                              <div class="center text-center m-t-n">
+                                <a href="video-detail.html"><i class="icon-arrow-right i-2x"></i></a>
+                              </div>
+                              <div class="bottom padder m-b-sm">
+                                <a href="#" class="pull-right">
+                                  <i class="fa fa-heart-o"></i>
+                                </a>
+                                <a href="#">
+                                  <i class="fa fa-plus-circle"></i>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="top">
+                              <span class="pull-left m-t-n-xs m-r-sm text-danger">
+                                <i class="fa fa-bookmark i-lg"></i>
+                              </span>
+                            </div>
+                            <a href="#"><img src="images/p6.jpg" alt="" class="r r-2x img-full"></a>
+                          </div>
+                          <div class="padder-v">
+                            <a href="#" class="text-ellipsis">法大师傅看来你拒绝访问人分厘卡圣诞节罚款法大师傅看来你拒绝访问人分厘卡圣诞节罚款</a>
+                            <a href="#" class="text-ellipsis text-xs text-muted">
+                              <span class="pull-left"><i class="icon-badge"></i> HJKD-23</span>
+                              <span class="pull-right"><i class="icon-clock"></i> 2020/04/10</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <div class="item">
+                          <div class="pos-rlt">
+                            <div class="top">
+                              <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-success">新</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x bg-black">
+                              <div class="text-info padder m-t-sm text-sm">
+                                <i class="fa fa-star"></i> 评分：9.8
+                              </div>
+                              <div class="center text-center m-t-n">
+                                <a href="video-detail.html"><i class="icon-arrow-right i-2x"></i></a>
+                              </div>
+                              <div class="bottom padder m-b-sm">
+                                <a href="#" class="pull-right">
+                                  <i class="fa fa-heart-o"></i>
+                                </a>
+                                <a href="#">
+                                  <i class="fa fa-plus-circle"></i>
+                                </a>
+                              </div>
+                            </div>
+                            <div class="top">
+                              <span class="pull-left m-t-n-xs m-r-sm text-danger">
+                                <i class="fa fa-bookmark i-lg"></i>
+                              </span>
+                            </div>
+                            <a href="#"><img src="images/p6.jpg" alt="" class="r r-2x img-full"></a>
+                          </div>
+                          <div class="padder-v">
+                            <a href="#" class="text-ellipsis">法大师傅看来你拒绝访问人分厘卡圣诞节罚款法大师傅看来你拒绝访问人分厘卡圣诞节罚款</a>
+                            <a href="#" class="text-ellipsis text-xs text-muted">
+                              <span class="pull-left"><i class="icon-badge"></i> HJKD-23</span>
+                              <span class="pull-right"><i class="icon-clock"></i> 2020/04/10</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+                <div class="col-sm-3">
+                  <h5 class="font-bold">基本信息</h5>
+                  <ul class="list-group">
+                    <li class="list-group-item">
+                      <a href="#">
+                        番号
+                        <span class="badge pull-right">{$movie.sdde}</span>
+                      </a>
+                    </li>
+                    <li class="list-group-item">
+                      <a href="#">
+                        时长
+                        <span class="badge pull-right">{$movie.duration} 分钟</span>
+                      </a>
+                    </li>
+                    <li class="list-group-item">
+                      <a href="#">
+                        导演
+                        <span class="badge pull-right">{$movie.director}</span>
+                      </a>
+                    </li>
+
+                    <li class="list-group-item">
+                      <a href="#">
+                        发行商
+                        <span class="badge pull-right">{$movie.publisher}</span>
+                      </a>
+                    </li>
+                    <li class="list-group-item">
+                      <a href="#">
+                        制片商
+                        <span class="badge pull-right">{$movie.producer}</span>
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="tags m-b-lg l-h-2x">
+                    <a href="#" class="label bg-info">技术</a>
+                    <a href="#" class="label bg-info">PHP</a>
+                    <a href="#" class="label bg-info">Apple</a>
+                    <a href="#" class="label bg-info">Less</a>
+                    <a href="#" class="label bg-info">Theme</a>
+                    <a href="#" class="label bg-info">CMS</a>
+                  </div>
+                  <h5 class="font-bold">主演</h5>
+                  <div>
+                    <article class="media">
+                      <a class="pull-left thumb thumb-wrapper m-t-xs">
+                        <img src="images/m1.jpg">
+                      </a>
+                      <div class="media-body">
+                        <a href="#" class="font-semibold">胡歌</a>
+                        <div class="text-xs block m-t-xs">
+                          <a href="#">1990-02-21</a>
+                          中国西安
+                        </div>
+                      </div>
+                    </article>
+                    <div class="line"></div>
+                    <article class="media m-t-none">
+                      <a class="pull-left thumb thumb-wrapper m-t-xs">
+                        <img src="images/m2.jpg">
+                      </a>
+                      <div class="media-body">
+                        <a href="#" class="font-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
+                        <div class="text-xs block m-t-xs"><a href="#">Design</a> 2 hours ago</div>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </section>
+            {include file='layout/footer'}
+          </section>
+        </section>
+      </section>
+    </section>
+  </section>
+</body>
+
+</html>

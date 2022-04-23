@@ -10,9 +10,17 @@
 // +----------------------------------------------------------------------
 use think\facade\Route;
 
+Route::get('/', '\app\index\controller\Index@index');
+Route::get('/detail/:sdde', '\app\index\controller\Detail@index')->pattern(['sdde' => '[\w-]+']);
+
+
 Route::group('/star', function () {
     Route::get('/', 'app\index\controller\Star@list');
     Route::get('/infantry', 'app\index\controller\Star@infantry');
+});
+
+Route::group('/profile', function () {
     Route::get('/alone/:hash', 'app\index\controller\Star@alone');
-    Route::get('/profile/:hash', 'app\index\controller\Star@profile');
+    Route::get('/sowar/:hash', 'app\index\controller\Star@sowar_profile');
+    Route::get('/infantry/:hash', 'app\index\controller\Star@infantry_profile');
 });

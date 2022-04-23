@@ -23,16 +23,25 @@ class Star
     {
         $stars = Stars::where(['type' => 1])->paginate(60);
 
-        return View::fetch('index@star', compact('stars'));
+        return View::fetch('index@infantry', compact('stars'));
     }
 
-    public function profile(Request $request, $hash)
+    public function sowar_profile(Request $request, $hash)
     {
-        $star = Stars::where(['hash' => $hash])->find();
+        $star = Stars::where(['hash' => $hash, 'type' => 0])->find();
 
         $movies = Movies::whereLike('stars', "%{$hash}%")->paginate(12);
 
-        return View::fetch('index@profile', compact('star', 'movies'));
+        return View::fetch('index@sowar_profile', compact('star', 'movies'));
+    }
+
+    public function infantry_profile(Request $request, $hash)
+    {
+        $star = Stars::where(['hash' => $hash, 'type' => 1])->find();
+
+        $movies = Movies::whereLike('stars', "%{$hash}%")->paginate(12);
+
+        return View::fetch('index@infantry_profile', compact('star', 'movies'));
     }
 
     public function alone(Request $request, $hash)

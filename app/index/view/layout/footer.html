@@ -1,0 +1,24 @@
+<footer class="footer bg-light">
+    <div class="alert alert-info" style="margin-bottom:0;">
+      备案号：<strong>粤CT-234293</strong> 版权：<strong>&copy; 2022 AutoMovie.</strong> All Rights Reserved By autofelix.
+    </div>
+</footer>
+
+<script src="{__INDEX_STATIC__}/js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="{__INDEX_STATIC__}/js/bootstrap.js"></script>
+  <!-- App -->
+  <script src="{__INDEX_STATIC__}/js/app.js"></script>
+  <script src="{__INDEX_STATIC__}/js/jquery.lazyload.min.js"></script>
+  <script src="{__INDEX_STATIC__}/js/viewer/viewer-jquery.min.js"></script>
+  <script>
+    $('#viewer-picture').viewer({
+      url: 'data-original'
+    });
+
+    $("img").lazyload({
+      placeholder: "{__INDEX_STATIC__}/images/loading.gif",
+      effect: "fadeIn",
+      threshold: 200
+    });
+  </script>
