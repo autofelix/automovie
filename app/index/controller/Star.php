@@ -30,7 +30,7 @@ class Star
     {
         $star = Stars::where(['hash' => $hash, 'type' => 0])->find();
 
-        $movies = Movies::whereLike('stars', "%{$hash}%")->paginate(12);
+        $movies = Movies::whereLike('stars', "%{$hash}%")->paginate(36);
 
         return View::fetch('index@sowar_profile', compact('star', 'movies'));
     }
@@ -39,7 +39,7 @@ class Star
     {
         $star = Stars::where(['hash' => $hash, 'type' => 1])->find();
 
-        $movies = Movies::whereLike('stars', "%{$hash}%")->paginate(12);
+        $movies = Movies::whereLike('stars', "%{$hash}%")->paginate(36);
 
         return View::fetch('index@infantry_profile', compact('star', 'movies'));
     }

@@ -23,6 +23,8 @@ class Detail
             $magnetics = Magnetics::where(['hash' => $movie->hash])->select();
         }
 
-        return View::fetch('index@detail', compact('movie', 'magnetics'));
+        $similars = Movies::whereIn('sdde', $movie->sdde)->select();
+
+        return View::fetch('index@detail', compact('movie', 'magnetics', 'similars'));
     }
 }
