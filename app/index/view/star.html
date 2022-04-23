@@ -286,161 +286,46 @@
         <!-- /.aside -->
         <section id="content" class="bg-white">
           <section class="vbox">
-            <section class="scrollable">
+            <section class="w-f-md" id="bjax-target">
               <section class="hbox stretch">
-                <aside class="aside-lg bg-light lter b-r">
+
+                <section>
                   <section class="vbox">
-                    <section class="scrollable">
-                      <div class="wrapper">
-                        <div class="text-center m-b m-t">
-                          <a href="#" class="thumb-lg">
-                            <img src="{__INDEX_STATIC__}/images/a0.png" class="img-circle">
-                          </a>
-                          <div>
-                            <div class="h3 m-t-xs m-b-xs">John.Smith</div>
-                            <small class="text-muted"><i class="fa fa-map-marker"></i> London, UK</small>
-                          </div>
-                        </div>
-                        <div class="panel wrapper">
-                          <div class="row text-center">
-                            <div class="col-xs-6">
-                              <a href="#">
-                                <span class="m-b-xs h4 block">245</span>
-                                <small class="text-muted">Followers</small>
-                              </a>
+                    <section class="scrollable padder-lg">
+                      <h2 class="font-thin m-b">分类 <span class="musicbar animate inline m-l-sm"
+                          style="width:20px;height:20px">
+                          <span class="bar1 a1 bg-primary lter"></span>
+                          <span class="bar2 a2 bg-info lt"></span>
+                          <span class="bar3 a3 bg-success"></span>
+                          <span class="bar4 a4 bg-warning dk"></span>
+                          <span class="bar5 a5 bg-danger dker"></span>
+                        </span>
+                      </h2>
+                      <div class="row row-sm">
+                        {foreach $stars as $star}
+                        <div class="col-xs-6 col-sm-4 col-md-1">
+                          <div class="item">
+                            <div class="pos-rlt">
+                              <a href="/star/profile/{$star.hash}"><img src="//www.seedmm.fun/pics/actress/{$star.avatar}" alt="" class="r r-2x img-circle"></a>
                             </div>
-                            <div class="col-xs-6">
-                              <a href="#">
-                                <span class="m-b-xs h4 block">55</span>
-                                <small class="text-muted">Following</small>
-                              </a>
+                            <div class="padder-v">
+                              <a href="/star/profile/{$star.hash}" class="text-ellipsis">{$star.name}</a>
                             </div>
                           </div>
                         </div>
-                        <div class="btn-group btn-group-justified m-b">
-                          <a class="btn btn-success btn-rounded" data-toggle="button">
-                            <span class="text">
-                              <i class="fa fa-eye"></i> Follow
-                            </span>
-                            <span class="text-active">
-                              <i class="fa fa-eye"></i> Following
-                            </span>
-                          </a>
-                          <a class="btn btn-dark btn-rounded">
-                            <i class="fa fa-comment-o"></i> Chat
-                          </a>
-                        </div>
-                        <div>
-                          <table class="table table-striped m-b-none">
-                            <thead>
-                              <tr>
-                                <th>描述</th>
-                                <th>详情</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <i class="icon-arrow-up"></i> 身高
-                                </td>
-                                <td>
-                                  180cm
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="icon-target"></i> 年龄
-                                </td>
-                                <td>
-                                  25
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <i class="icon-clock"></i> 出生日期
-                                </td>
-                                <td>
-                                  1994-02-54
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                        {/foreach}
+                      </div>
+                      <div style="text-align: center;">
+                        {$stars|raw}
                       </div>
                     </section>
                   </section>
-                </aside>
-                <aside class="bg-white">
-                  <section class="vbox">
-                    <header class="header bg-light lt">
-                      <ul class="nav nav-tabs nav-white">
-                        <li class="active"><a href="/star/profile/{$star.hash}">全部作品</a></li>
-                        <li class=""><a href="/star/alone/{$star.hash}">独自出演</a></li>
-                      </ul>
-                    </header>
-                    <section class="scrollable">
-                      <div class="tab-content">
-                        <div class="tab-pane active" style="padding: 2rem;" id="all">
-                          <div class="row row-sm">
-                            {foreach $movies as $movie}
-                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                              <div class="item">
-                                <div class="pos-rlt">
-                                  <div class="top">
-                                    {if $movie.is_hd == 1}
-                                    <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
-                                    {/if}
-                                    {if $movie.is_subtitle == 1}
-                                    <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
-                                    {/if}
-                                  </div>
-                                  <div class="item-overlay opacity r r-2x bg-black">
-                                    <div class="text-info padder m-t-sm text-sm">
-                                      <i class="fa fa-star"></i> 评分：9.8
-                                    </div>
-                                    <div class="center text-center m-t-n">
-                                      <a href="/detail/{$movie.sdde}"><i class="icon-arrow-right i-2x"></i></a>
-                                    </div>
-                                    <div class="bottom padder m-b-sm">
-                                      <a href="#" class="pull-right">
-                                        <i class="fa fa-heart-o"></i>
-                                      </a>
-                                      <a href="#">
-                                        <i class="fa fa-plus-circle"></i>
-                                      </a>
-                                    </div>
-                                  </div>
-                                  <div class="top">
-                                    <span class="pull-left m-t-n-xs m-r-sm text-danger">
-                                      <i class="fa fa-bookmark i-lg"></i>
-                                    </span>
-                                  </div>
-                                  <a href="#"><img src="https://www.seedmm.fun/pics/thumb/{:str_replace('_b', '', $movie.cover)}" alt="" class="r r-2x img-full"></a>
-                                </div>
-                                <div class="padder-v">
-                                  <a href="#" class="text-ellipsis">{$movie.title}</a>
-                                  <a href="#" class="text-ellipsis text-xs text-muted">
-                                    <span class="pull-left"><i class="icon-badge"></i> {$movie.sdde}</span>
-                                    <span class="pull-right"><i class="icon-clock"></i> {$movie.publish_date}</span>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                            {/foreach}
-                          </div>
-                          <div style="text-align: center;">
-                            {$movies|raw}
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                    <footer class="footer bg-light">
-                      <div class="alert alert-info" style="margin-bottom:0;">
-                        备案号：<strong>粤CT-234293</strong> 版权：<strong>&copy; 2022 AutoMovie.</strong> All Rights Reserved By autofelix.
-                      </div>
-                    </footer>
-                  </section>
-                </aside>
+                  <footer class="footer bg-light">
+                    <div class="alert alert-info" style="margin-bottom:0;">
+                      备案号：<strong>粤CT-234293</strong> 版权：<strong>&copy; 2022 AutoMovie.</strong> All Rights Reserved By autofelix.
+                    </div>
+                  </footer>
+                </section>
               </section>
             </section>
           </section>

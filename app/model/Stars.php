@@ -1,7 +1,7 @@
 <?php
 declare (strict_types = 1);
 
-namespace app\index\model;
+namespace app\model;
 
 use think\Model;
 

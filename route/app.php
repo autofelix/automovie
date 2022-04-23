@@ -11,6 +11,8 @@
 use think\facade\Route;
 
 Route::group('/star', function () {
-    Route::get('/', 'app/index/controller/Star@list');
-    Route::get('/:hash', 'app/index/controller/Star@profile');
+    Route::get('/', 'app\index\controller\Star@list');
+    Route::get('/infantry', 'app\index\controller\Star@infantry');
+    Route::get('/alone/:hash', 'app\index\controller\Star@alone');
+    Route::get('/profile/:hash', 'app\index\controller\Star@profile');
 });

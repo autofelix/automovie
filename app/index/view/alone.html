@@ -293,12 +293,12 @@
                     <section class="scrollable">
                       <div class="wrapper">
                         <div class="text-center m-b m-t">
-                          <a href="#" class="thumb-lg">
-                            <img src="{__INDEX_STATIC__}/images/a0.png" class="img-circle">
+                          <a href="javascript:;" class="thumb-lg">
+                            <img src="//www.seedmm.fun/pics/actress/{$star.avatar}" class="img-circle">
                           </a>
                           <div>
-                            <div class="h3 m-t-xs m-b-xs">John.Smith</div>
-                            <small class="text-muted"><i class="fa fa-map-marker"></i> London, UK</small>
+                            <div class="h3 m-t-xs m-b-xs">1star.name</div>
+                            <small class="text-muted"><i class="fa fa-map-marker"></i> {$star.hometown}</small>
                           </div>
                         </div>
                         <div class="panel wrapper">
@@ -344,7 +344,7 @@
                                   <i class="icon-arrow-up"></i> 身高
                                 </td>
                                 <td>
-                                  180cm
+                                  {$star.height} cm
                                 </td>
                               </tr>
                               <tr>
@@ -352,7 +352,7 @@
                                   <i class="icon-target"></i> 年龄
                                 </td>
                                 <td>
-                                  25
+                                  {$star.age}
                                 </td>
                               </tr>
                               <tr>
@@ -360,7 +360,7 @@
                                   <i class="icon-clock"></i> 出生日期
                                 </td>
                                 <td>
-                                  1994-02-54
+                                  {$star.birthday}
                                 </td>
                               </tr>
                             </tbody>
@@ -374,8 +374,8 @@
                   <section class="vbox">
                     <header class="header bg-light lt">
                       <ul class="nav nav-tabs nav-white">
-                        <li class="active"><a href="/star/profile/{$star.hash}">全部作品</a></li>
-                        <li class=""><a href="/star/alone/{$star.hash}">独自出演</a></li>
+                        <li class=""><a href="/star/profile/{$star.hash}">全部作品</a></li>
+                        <li class="active"><a href="/star/alone/{$star.hash}">独自出演</a></li>
                       </ul>
                     </header>
                     <section class="scrollable">
@@ -415,7 +415,7 @@
                                       <i class="fa fa-bookmark i-lg"></i>
                                     </span>
                                   </div>
-                                  <a href="#"><img src="https://www.seedmm.fun/pics/thumb/{:str_replace('_b', '', $movie.cover)}" alt="" class="r r-2x img-full"></a>
+                                  <a href="#"><img src="//www.seedmm.fun/pics/thumb/{:str_replace('_b', '', $movie.cover)}" alt="" class="r r-2x img-full"></a>
                                 </div>
                                 <div class="padder-v">
                                   <a href="#" class="text-ellipsis">{$movie.title}</a>
