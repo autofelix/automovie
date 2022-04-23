@@ -31,7 +31,6 @@ class Magnetics extends Migrator
         $table = $this->table('magnetics', ['collation' => 'utf8mb4_general_ci']);
         $table->addColumn('magnet', 'string', ['limit' => 100, 'comment' => '地址，magnet:?xt=urn:btih:'])
             ->addColumn('name', 'string', ['limit' => 255, 'comment' => '名称'])
-            ->addColumn('sdde', 'string', ['limit' => 50, 'default' => '', 'comment' => '番号'])
             ->addColumn('hash', 'string', ['limit' => 30, 'default' => '', 'comment' => '标识'])
             ->addColumn('is_hd', 'integer', ['limit' => 1, 'default' => 0, 'comment' => '是否高清，「0非高清，1高清」'])
             ->addColumn('is_subtitle', 'integer', ['limit' => 1, 'default' => 0, 'comment' => '有无字幕，「0无字幕，1有字幕」'])
