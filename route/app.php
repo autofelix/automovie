@@ -10,8 +10,7 @@
 // +----------------------------------------------------------------------
 use think\facade\Route;
 
-Route::get('think', function () {
-    return 'hello,ThinkPHP6!';
+Route::group('/star', function () {
+    Route::get('/', 'app/index/controller/Star@list');
+    Route::get('/:hash', 'app/index/controller/Star@profile');
 });
-
-Route::get('hello/:name', 'index/hello');
