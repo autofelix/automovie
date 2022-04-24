@@ -21,7 +21,11 @@ class Index
     {
         $keywords = $request->param('keywords');
 
-        $movies = Movies::whereLike('title', "%{$keywords}%")->paginate(24);
+        $movies = Movies::whereLike('title', "%{$keywords}%")
+            ->paginate([
+                'list_rows'=>24,
+                'query' => $request->param()
+            ]);
 
         return View::fetch('index@index', compact('movies'));
     }

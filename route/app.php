@@ -11,7 +11,7 @@
 use think\facade\Route;
 
 Route::get('/', '\app\index\controller\Index@index');
-Route::post('/search', '\app\index\controller\Index@search');
+Route::get('/search', '\app\index\controller\Index@search');
 Route::get('/detail/:sdde', '\app\index\controller\Detail@index')->pattern(['sdde' => '[\w-]+']);
 
 Route::group('/sort', function () {
