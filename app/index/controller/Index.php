@@ -23,7 +23,7 @@ class Index
 
         $movies = Movies::whereLike('title', "%{$keywords}%")
             ->paginate([
-                'list_rows'=>24,
+                'list_rows' => 24,
                 'query' => $request->param()
             ]);
 
