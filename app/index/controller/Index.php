@@ -29,4 +29,19 @@ class Index
 
         return View::fetch('index@index', compact('movies'));
     }
+
+    public function director()
+    {
+        return View::fetch('index@director');
+    }
+
+    public function publisher()
+    {
+        return View::fetch('index@publisher');
+    }
+
+    public function producer()
+    {
+        return View::fetch('index@producer');
+    }
 }
