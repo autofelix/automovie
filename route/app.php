@@ -11,8 +11,17 @@
 use think\facade\Route;
 
 Route::get('/', '\app\index\controller\Index@index');
+Route::post('/search', '\app\index\controller\Index@search');
 Route::get('/detail/:sdde', '\app\index\controller\Detail@index')->pattern(['sdde' => '[\w-]+']);
 
+Route::group('/sort', function () {
+    Route::get('/popular', 'app\index\controller\Sort@popular');
+    Route::get('/sowar', 'app\index\controller\Sort@sowar');
+    Route::get('/infantry', 'app\index\controller\Sort@infantry');
+    Route::get('/magnetic', 'app\index\controller\Sort@magnetic');
+    Route::get('/hd', 'app\index\controller\Sort@hd');
+    Route::get('/subtitle', 'app\index\controller\Sort@subtitle');
+});
 
 Route::group('/star', function () {
     Route::get('/', 'app\index\controller\Star@list');

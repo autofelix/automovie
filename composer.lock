@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80d9d8eeaa95ff70d56f304f3ed36ef7",
+    "content-hash": "db2536100fa83a859e72564cd7af144c",
     "packages": [
         {
             "name": "league/flysystem",
@@ -162,6 +162,65 @@
                 "source": "https://github.com/thephpleague/flysystem-cached-adapter/tree/master"
             },
             "time": "2020-07-25T15:56:04+00:00"
+        },
+        {
+            "name": "owner888/phpspider",
+            "version": "v2.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/owner888/phpspider.git",
+                "reference": "c4f2e2702d047f9b8360b89a3795a650a3de70a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/owner888/phpspider/zipball/c4f2e2702d047f9b8360b89a3795a650a3de70a2",
+                "reference": "c4f2e2702d047f9b8360b89a3795a650a3de70a2",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "suggest": {
+                "ext-pcntl、ext-redis": "For better performance. "
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "phpspider\\": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Seatle Yang",
+                    "email": "seatle@foxmail.com",
+                    "homepage": "http://www.phpspider.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The PHPSpider Framework.",
+            "homepage": "http://www.phpspider.org",
+            "keywords": [
+                "framework",
+                "phpspider"
+            ],
+            "support": {
+                "email": "seatle@foxmail.com",
+                "forum": "http://wenda.phpspider.org/",
+                "issues": "https://github.com/owner888/phpspider/issues",
+                "source": "https://github.com/owner888/phpspider",
+                "wiki": "http://doc.phpspider.org/"
+            },
+            "time": "2020-10-09T11:36:21+00:00"
         },
         {
             "name": "psr/cache",
