@@ -26,7 +26,8 @@
         "topthink/think-migration": "^3.0",
         "topthink/think-multi-app": "^1.0",
         "topthink/think-view": "^1.0",
-        "jaeger/querylist": "^4.2"
+        "jaeger/querylist": "^4.2",
+        "jaeger/querylist-curl-multi": "^4.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",

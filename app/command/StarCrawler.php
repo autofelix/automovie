@@ -7,6 +7,7 @@ use think\Exception;
 use think\facade\Db;
 use GuzzleHttp\Psr7\Response;
 use QL\QueryList;
+use QL\Ext\CurlMulti;
 use think\console\Command;
 use think\console\Input;
 use think\console\input\Argument;
@@ -51,23 +52,14 @@ class StarCrawler extends Command
 
         $range = 'a.avatar-box';
 
-        QueryList::rules($rules)
+        $ql = QueryList::getInstance();
+        $ql->use(CurlMulti::class);
+
+        $ql->rules($rules)
             ->range($range)
-            ->multiGet($urls)
-            // 设置并发数为2
-            ->concurrency(20)
-            // 设置GuzzleHttp的一些其他选项
-            ->withOptions([
-                'timeout' => 60,
-                'verify' => false
-            ])
-            // 设置HTTP Header
-            ->withHeaders([
-                'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-                'Referer' => 'https://www.seedmm.fun',
-            ])
+            ->curlMulti($urls)
             // HTTP success回调函数
-            ->success(function (QueryList $ql, Response $response, $index) use ($type) {
+            ->success(function (QueryList $ql, CurlMulti $curl, $r) use ($type) {
                 $item = $ql->queryData();
                 $hash = $item[0]['hash'];
 
@@ -105,7 +97,7 @@ class StarCrawler extends Command
 
                         foreach ($map as $k => $v) {
                             preg_match($v, $item['info'], $out);
-                            if ($out[1]) $item[$k] = $out[1];
+                            if (isset($out[1])) $item[$k] = $out[1];
                         }
                     }
 
@@ -119,13 +111,30 @@ class StarCrawler extends Command
                     print_r($e->getMessage());
                 }
 
+                QueryList::destructDocuments();
+
             })
             // HTTP error回调函数
             ->error(function (QueryList $ql, $reason, $index) {
                 // ...
                 var_dump($ql);
             })
-            ->send();
+            ->start([
+                // 最大并发数，这个值可以运行中动态改变。
+                'maxThread' => 30,
+                // 触发curl错误或用户错误之前最大重试次数，超过次数$error指定的回调会被调用。
+                'maxTry' => 10,
+                // 全局CURLOPT_*
+                'opt' => [
+                    CURLOPT_TIMEOUT => 10,
+                    CURLOPT_CONNECTTIMEOUT => 1,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_HEADER => [
+                        'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
+                        'Referer' => 'https://www.seedmm.fun',
+                    ]
+                ],
+            ]);
 
         // 指令输出
         $output->writeln('=====================  演员采集成功 =======================');

@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "339713ec975dba5a1351496c5fa4ed1a",
+    "content-hash": "ca1bfc5284283b7bc7ce9231ef48d142",
     "packages": [
+        {
+            "name": "ares333/php-curl",
+            "version": "v4.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ares333/php-curl.git",
+                "reference": "580025300c3cbf7cafe825bd454018ffc62233cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ares333/php-curl/zipball/580025300c3cbf7cafe825bd454018ffc62233cf",
+                "reference": "580025300c3cbf7cafe825bd454018ffc62233cf",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ares333\\Curl\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Ares",
+                    "homepage": "http://phpdr.net"
+                }
+            ],
+            "description": "The best php curl library.",
+            "keywords": [
+                "PHP cURL",
+                "aysnc http",
+                "curl",
+                "curlmulti"
+            ],
+            "support": {
+                "issues": "https://github.com/ares333/php-curl/issues",
+                "source": "https://github.com/ares333/php-curl/tree/master"
+            },
+            "time": "2018-12-13T03:47:27+00:00"
+        },
         {
             "name": "cache/adapter-common",
             "version": "1.3.0",
@@ -725,6 +778,56 @@
                 }
             ],
             "time": "2021-07-05T06:07:58+00:00"
+        },
+        {
+            "name": "jaeger/querylist-curl-multi",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jae-jae/QueryList-CurlMulti.git",
+                "reference": "6f9bec5198cdafc56ffcc2e047374c76a08b153a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jae-jae/QueryList-CurlMulti/zipball/6f9bec5198cdafc56ffcc2e047374c76a08b153a",
+                "reference": "6f9bec5198cdafc56ffcc2e047374c76a08b153a",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ares333/php-curl": "^4.2",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "jaeger/querylist": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "QL\\Ext\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaeger",
+                    "email": "JaegerCode@gmail.com"
+                }
+            ],
+            "description": "QueryList Plugin: Curl multi threading. QueryList Curl多线程插件",
+            "support": {
+                "issues": "https://github.com/jae-jae/QueryList-CurlMulti/issues",
+                "source": "https://github.com/jae-jae/QueryList-CurlMulti/tree/master"
+            },
+            "time": "2018-10-16T07:13:30+00:00"
         },
         {
             "name": "league/flysystem",
