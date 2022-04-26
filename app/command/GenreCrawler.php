@@ -24,19 +24,21 @@ class GenreCrawler extends Command
     protected function execute(Input $input, Output $output)
     {
         $urls = [
-            'https://www.xdkb.net/p1/kbjj/20220419/278380.html',
-            'https://www.xdkb.net/p1/kbjj/20220419/278380.html'
+            'https://www.seedmm.fun/genre',
+            'https://www.seedmm.fun/uncensored/genre'
         ];
 
         $rules = [
-            'name' => ['.big-title', 'text'],
-            'hash' => ['.message', 'href', '', function ($href) {
-                $parts = explode('/', $href);
+            'name' => ['', 'text', '', function ($name) {
+                return trim($name);
+            }],
+            'hash' => ['', 'href', '', function ($hash) {
+                $parts = explode('/', $hash);
                 return end($parts);
             }]
         ];
 
-        $range = '.repo-list>li';
+        $range = 'a.col-lg-2.col-md-2.col-sm-3.col-xs-6.text-center';
 
         QueryList::rules($rules)
             ->range($range)
@@ -51,17 +53,18 @@ class GenreCrawler extends Command
             // 设置HTTP Header
             ->withHeaders([
                 'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-                'Accept-Encoding' => 'gzip, deflate, br',
+                'Referer' => 'https://www.seedmm.fun',
             ])
             // HTTP success回调函数
             ->success(function (QueryList $ql, Response $response, $index) {
                 // $data = $ql->queryData();
                 $data = $ql->query(function ($item) use ($index) {
                     $item['type'] = $index == 0 ? 0 : 1;
+                    $item['time'] = date('Y-m-d H:i:s');
                     return $item;
                 })->getData();
 
-                Db::name('genres')->insert($data->all());
+                Db::name('genres')->insertAll($data->all());
             })
             // HTTP error回调函数
             ->error(function (QueryList $ql, $reason, $index) {
