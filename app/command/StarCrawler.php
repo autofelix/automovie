@@ -3,6 +3,7 @@ declare (strict_types=1);
 
 namespace app\command;
 
+use think\Exception;
 use think\facade\Db;
 use GuzzleHttp\Psr7\Response;
 use QL\QueryList;
@@ -17,6 +18,11 @@ class StarCrawler extends Command
     protected function configure()
     {
         // 指令配置
+        /**
+         * 每页50张演员图
+         * https://www.seedmm.fun/actresses/1    905   0
+         * https://www.seedmm.fun/uncensored/actresses/1 436  1
+         */
         $this->setName('star_crawler')
             ->addArgument('url', Argument::REQUIRED, "first url")
             ->addArgument('total', Argument::REQUIRED, "total page")
@@ -32,18 +38,18 @@ class StarCrawler extends Command
 
         $urls = [];
         for ($i = 1; $i <= $total; $i++) {
-            $urls[] = str_replace('page/1', "page/{$i}", $url);
+            $urls[] = str_replace('1', "{$i}", $url);
         }
 
         $rules = [
-            'name' => ['.name', 'text'],
-            'avatar' => ['.avatar', 'text'],
-            'link' => ['.link>a', 'href', '', function ($href) {
-                return 'http:' . $href;
-            }]
+            'hash' => ['', 'href', '', function ($hash) {
+                $parts = explode('/', $hash);
+                return end($parts);
+            }],
+            'link' => ['', 'href']
         ];
 
-        $range = '.item';
+        $range = 'a.avatar-box';
 
         QueryList::rules($rules)
             ->range($range)
@@ -58,33 +64,61 @@ class StarCrawler extends Command
             // 设置HTTP Header
             ->withHeaders([
                 'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-                'Accept-Encoding' => 'gzip, deflate, br',
+                'Referer' => 'https://www.seedmm.fun',
             ])
             // HTTP success回调函数
             ->success(function (QueryList $ql, Response $response, $index) use ($type) {
-                // $data = $ql->queryData();
+                $item = $ql->queryData();
+                $hash = $item[0]['hash'];
 
-                $result = QueryList::get($ql->queryData()['href'])->rules([
-                    'name' => ['.name', 'text'],
-                    'hash' => ['.name', 'text'],
-                    'avatar' => ['.name', 'text'],
-                    'birthday' => ['.name', 'text'],
-                    'hometown' => ['.name', 'text'],
-                    'age' => ['.name', 'text'],
-                    'height' => ['.name', 'text'],
-                    'cupsize' => ['.name', 'text'],
-                    'bust' => ['.name', 'text'],
-                    'waist' => ['.name', 'text'],
-                    'hip' => ['.name', 'text'],
-                    'hobby' => ['.name', 'text']
-                ])->query()->getData(function ($item, $key) use ($type) {
+                $result = QueryList::get($item[0]['link'])->rules([
+                    'name' => ['div.avatar-box>.photo-info>.pb10', 'text', '', function ($name) {
+                        return trim($name);
+                    }],
+                    'avatar' => ['div.avatar-box>.photo-frame>img', 'src', '', function ($avatar) {
+                        if ($avatar) {
+                            $parts = explode('/', $avatar);
+                            return end($parts);
+                        } else {
+                            return 'nowprinting.gif';
+                        }
+                    }],
+                    'info' => ['div.avatar-box>.photo-info', 'text', 'p -span']
+                ])->query()->getData(function ($item, $key) use ($type, $hash) {
                     $item['type'] = $type;
+                    $item['hash'] = $hash;
+                    $item['birthday'] = '1970-01-01';
+                    $item['time'] = date('Y-m-d H:i:s');
+
+                    if ($item['info']) {
+                        $map = [
+                            'birthday' => '#<p>生日: (.*?)</p>#',
+                            'age' => '#<p>年齡: (.*?)</p>#',
+                            'height' => '#<p>身高: (.*?)cm</p>#',
+                            'cupsize' => '#<p>罩杯: (.*?)</p>#',
+                            'bust' => '#<p>胸圍: (.*?)cm</p>#',
+                            'waist' => '#<p>腰圍: (.*?)cm</p>#',
+                            'hip' => '#<p>臀圍: (.*?)cm</p>#',
+                            'hometown' => '#<p>出生地: (.*?)</p>#',
+                            'hobby' => '#<p>愛好: (.*?)</p>#',
+                        ];
+
+                        foreach ($map as $k => $v) {
+                            preg_match($v, $item['info'], $out);
+                            if ($out[1]) $item[$k] = $out[1];
+                        }
+                    }
+
+                    unset($item['info']);
                     return $item;
                 });
 
-//                print_r($response->queryData());
+                try {
+                    Db::name('stars')->insert($result->all());
+                } catch (Exception $e) {
+                    print_r($e->getMessage());
+                }
 
-                Db::name('stars')->insert($result->queryData());
             })
             // HTTP error回调函数
             ->error(function (QueryList $ql, $reason, $index) {
