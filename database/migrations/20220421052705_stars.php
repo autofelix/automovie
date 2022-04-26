@@ -42,7 +42,6 @@ class Stars extends Migrator
             ->addColumn('hip', 'integer', ['limit' => 4, 'default' => 0, 'comment' => '臀围'])
             ->addColumn('hobby', 'string', ['limit' => 255, 'default' => '', 'comment' => '爱好'])
             ->addColumn('type', 'integer', ['limit' => 1, 'default' => 0, 'comment' => '类型，「0有码，1无码」'])
-            ->addColumn('time', 'datetime', ['comment' => '抓取时间'])
             ->create();
     }
 }

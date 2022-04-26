@@ -32,7 +32,6 @@ class Genres extends Migrator
         $table->addColumn('name', 'string', ['limit' => 30, 'comment' => '名称'])
             ->addColumn('hash', 'string', ['limit' => 10, 'comment' => '标识'])
             ->addColumn('type', 'integer', ['limit' => 1, 'default' => 0, 'comment' => '类型，「0有码，1无码」'])
-            ->addColumn('time', 'datetime', ['comment' => '抓取时间'])
             ->create();
     }
 }

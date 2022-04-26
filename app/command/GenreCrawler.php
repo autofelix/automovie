@@ -60,7 +60,6 @@ class GenreCrawler extends Command
                 // $data = $ql->queryData();
                 $data = $ql->query(function ($item) use ($index) {
                     $item['type'] = $index == 0 ? 0 : 1;
-                    $item['time'] = date('Y-m-d H:i:s');
                     return $item;
                 })->getData();
 

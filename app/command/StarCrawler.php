@@ -80,7 +80,6 @@ class StarCrawler extends Command
                     $item['type'] = $type;
                     $item['hash'] = $hash;
                     $item['birthday'] = '1970-01-01';
-                    $item['time'] = date('Y-m-d H:i:s');
 
                     if ($item['info']) {
                         $map = [
