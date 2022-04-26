@@ -28,12 +28,10 @@ Route::group('/sort', function () {
 });
 
 Route::group('/star', function () {
-    Route::get('/', 'app\index\controller\Star@list');
+    Route::get('/sowar', 'app\index\controller\Star@sowar');
     Route::get('/infantry', 'app\index\controller\Star@infantry');
-});
-
-Route::group('/profile', function () {
-    Route::get('/alone/:hash', 'app\index\controller\Star@alone');
     Route::get('/sowar/:hash', 'app\index\controller\Star@sowar_profile');
     Route::get('/infantry/:hash', 'app\index\controller\Star@infantry_profile');
+    Route::get('/sowar/alone/:hash', 'app\index\controller\Star@sowar_alone_profile');
+    Route::get('/infantry/alone/:hash', 'app\index\controller\Star@infantry_alone_profile');
 });

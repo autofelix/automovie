@@ -12,7 +12,7 @@ use app\model\Stars;
 
 class Star
 {
-    public function list()
+    public function sowar()
     {
         $stars = Stars::where(['type' => 0])->paginate(60);
 
@@ -44,12 +44,21 @@ class Star
         return View::fetch('index@infantry_profile', compact('star', 'movies'));
     }
 
-    public function alone(Request $request, $hash)
+    public function sowar_alone_profile(Request $request, $hash)
     {
-        $star = Stars::where(['hash' => $hash])->find();
+        $star = Stars::where(['hash' => $hash, 'type' => 0])->find();
 
         $movies = Movies::where(['stars' => $hash])->paginate(12);
 
-        return View::fetch('index@alone', compact('star', 'movies'));
+        return View::fetch('index@sowar_alone_profile', compact('star', 'movies'));
+    }
+
+    public function infantry_alone_profile(Request $request, $hash)
+    {
+        $star = Stars::where(['hash' => $hash, 'type' => 1])->find();
+
+        $movies = Movies::where(['stars' => $hash])->paginate(12);
+
+        return View::fetch('index@infantry_alone_profile', compact('star', 'movies'));
     }
 }
