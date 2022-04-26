@@ -49,7 +49,6 @@ class Movies extends Migrator
             ->addColumn('previews', 'integer', ['limit' => 3, 'default' => 0, 'comment' => '预览图数'])
             ->addColumn('thumb_preview', 'string', ['limit' => 255, 'default' => '', 'comment' => '小预览图'])
             ->addColumn('original_preview', 'string', ['limit' => 255, 'default' => '', 'comment' => '大预览图'])
-            ->addColumn('previews', 'integer', ['limit' => 3, 'default' => 0, 'comment' => '预览图数'])
             ->addColumn('score', 'float', ['default' => 0, 'comment' => '评分'])
             ->addColumn('type', 'integer', ['limit' => 1, 'default' => 0, 'comment' => '类型，「0有码，1无码」'])
             ->addColumn('publish_date', 'date', ['comment' => '发布日期'])

@@ -35,7 +35,6 @@ class ForumPosts extends Migrator
             ->addColumn('views', 'integer', ['limit' => 11, 'default' => 0, 'comment' => '浏览数'])
             ->addColumn('collects', 'integer', ['limit' => 11, 'default' => 0, 'comment' => '收藏数'])
             ->addColumn('thumbs', 'integer', ['limit' => 11, 'default' => 0, 'comment' => '点赞数'])
-            ->addColumn('replies', 'integer', ['limit' => 11, 'default' => 0, 'comment' => '回复数'])
             ->addColumn('topic_id', 'integer', ['limit' => 11, 'comment' => '所属主题'])
             ->addColumn('publish_time', 'datetime', ['comment' => '发布时间'])
             ->create();
