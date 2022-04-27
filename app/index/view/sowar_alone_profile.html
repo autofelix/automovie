@@ -21,7 +21,7 @@
                       <div class="wrapper">
                         <div class="text-center m-b m-t">
                           <a href="javascript:;" class="thumb-lg">
-                            <img src="//www.seedmm.fun/imgs/actress/{$star.avatar}" class="img-circle">
+                            <img src="//www.seedmm.fun/pics/actress/{$star.avatar}" class="img-circle">
                           </a>
                           <div>
                             <div class="h3 m-t-xs m-b-xs">{$star.name}</div>
@@ -68,6 +68,7 @@
                               </tr>
                             </thead>
                             <tbody>
+                              {if $star.height}
                               <tr>
                                 <td>
                                   <i class="icon-arrow-up"></i> 身高
@@ -76,6 +77,8 @@
                                   {$star.height} cm
                                 </td>
                               </tr>
+                              {/if}
+                              {if $star.age}
                               <tr>
                                 <td>
                                   <i class="icon-target"></i> 年龄
@@ -84,6 +87,8 @@
                                   {$star.age}
                                 </td>
                               </tr>
+                              {/if}
+                              {if $star.birthday}
                               <tr>
                                 <td>
                                   <i class="icon-clock"></i> 出生日期
@@ -92,6 +97,57 @@
                                   {$star.birthday}
                                 </td>
                               </tr>
+                              {/if}
+                              {if $star.cupsize}
+                              <tr>
+                                <td>
+                                  <i class="icon-vector"></i> 罩杯
+                                </td>
+                                <td>
+                                  {$star.cupsize}
+                                </td>
+                              </tr>
+                              {/if}
+                              {if $star.bust}
+                              <tr>
+                                <td>
+                                  <i class="icon-rocket"></i> 胸围
+                                </td>
+                                <td>
+                                  {$star.bust} cm
+                                </td>
+                              </tr>
+                              {/if}
+                              {if $star.waist}
+                              <tr>
+                                <td>
+                                  <i class="icon-bulb"></i> 腰围
+                                </td>
+                                <td>
+                                  {$star.waist} cm
+                                </td>
+                              </tr>
+                              {/if}
+                              {if $star.hip}
+                              <tr>
+                                <td>
+                                  <i class="icon-puzzle"></i> 臀围
+                                </td>
+                                <td>
+                                  {$star.hip} cm
+                                </td>
+                              </tr>
+                              {/if}
+                              {if $star.hobby}
+                              <tr>
+                                <td>
+                                  <i class="icon-heart"></i> 爱好
+                                </td>
+                                <td>
+                                  {$star.hobby}
+                                </td>
+                              </tr>
+                              {/if}
                             </tbody>
                           </table>
                         </div>
