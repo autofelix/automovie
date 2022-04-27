@@ -35,13 +35,9 @@
                   <div id="viewer-picture">
                     {for start='1' end='$movie.previews'}
                       {if strpos($movie.original_preview, 'http') === 0 }
-                        <img src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}'
-                          data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}' alt=""
-                          width="100" style="margin: .5rem;">
+                        <img data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}' alt="" width="100" style="margin: .5rem;">
                       {else/}
-                        <img src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}'
-                          data-original='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.original_preview)}' alt=""
-                          width="100" style="margin: .5rem;">
+                        <img data-original='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.original_preview)}' alt="" width="100" style="margin: .5rem;">
                       {/if}
                     {/for}
                   </div>
