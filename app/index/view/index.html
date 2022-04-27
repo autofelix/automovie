@@ -65,12 +65,15 @@
                             <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
                             {/if}
                             {if $movie.is_subtitle == 1}
-                            <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
+                            <span class="pull-right m-t-sm m-r-sm badge bg-danger">CC</span>
+                            {/if}
+                            {if $movie.is_magnetic == 1}
+                            <span class="pull-right m-t-sm m-r-sm badge bg-light">MT</span>
                             {/if}
                           </div>
                           <div class="item-overlay opacity r r-2x bg-black">
                             <div class="text-info padder m-t-sm text-sm">
-                              <i class="fa fa-star"></i> 评分：9.8
+                              <i class="fa fa-star"></i> 评分：{$movie.score}
                             </div>
                             <div class="center text-center m-t-n">
                               <a href="/detail/{$movie.sdde}"><i class="icon-arrow-right i-2x"></i></a>
@@ -84,13 +87,7 @@
                               </a>
                             </div>
                           </div>
-                          <div class="top">
-                            <span class="pull-left m-t-n-xs m-r-sm text-danger">
-                              <i class="fa fa-bookmark i-lg"></i>
-                            </span>
-                          </div>
-                          <a href="/detail/{$movie.sdde}"><img
-                              src="//www.seedmm.fun/pics/thumb/{:str_replace('_b', '', $movie.cover)}" alt=""
+                          <a href="/detail/{$movie.sdde}"><img src="//www.seedmm.fun/pics/thumb/{:str_replace('_b', '', $movie.cover)}" alt=""
                               class="r r-2x img-full"></a>
                         </div>
                         <div class="padder-v">

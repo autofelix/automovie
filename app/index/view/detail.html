@@ -34,9 +34,15 @@
                   {if $movie.previews > 0}
                   <div id="viewer-picture">
                     {for start='1' end='$movie.previews'}
-                    <img src='//www.seedmm.fun/pics/sample/{:str_replace("_b", "_$i", $movie.cover)}'
-                      data-original='//www.seedmm.fun/pics/sample/{:str_replace("_b", "_$i", $movie.cover)}' alt=""
-                      width="100" style="margin: .5rem;">
+                      {if strpos($movie.original_preview, 'http') === 0 }
+                        <img src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}'
+                          data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}' alt=""
+                          width="100" style="margin: .5rem;">
+                      {else/}
+                        <img src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}'
+                          data-original='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.original_preview)}' alt=""
+                          width="100" style="margin: .5rem;">
+                      {/if}
                     {/for}
                   </div>
                   {/if}
@@ -101,12 +107,15 @@
                               <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
                               {/if}
                               {if $movie.is_subtitle == 1}
-                              <span class="pull-right m-t-sm m-r-sm badge bg-light">CC</span>
+                              <span class="pull-right m-t-sm m-r-sm badge bg-danger">CC</span>
+                              {/if}
+                              {if $movie.is_magnetic == 1}
+                              <span class="pull-right m-t-sm m-r-sm badge bg-light">MT</span>
                               {/if}
                             </div>
                             <div class="item-overlay opacity r r-2x bg-black">
                               <div class="text-info padder m-t-sm text-sm">
-                                <i class="fa fa-star"></i> 评分：9.8
+                                <i class="fa fa-star"></i> 评分：{$movie.score}
                               </div>
                               <div class="center text-center m-t-n">
                                 <a href="/detail/{$movie.sdde}"><i class="icon-arrow-right i-2x"></i></a>
@@ -119,11 +128,6 @@
                                   <i class="fa fa-plus-circle"></i>
                                 </a>
                               </div>
-                            </div>
-                            <div class="top">
-                              <span class="pull-left m-t-n-xs m-r-sm text-danger">
-                                <i class="fa fa-bookmark i-lg"></i>
-                              </span>
                             </div>
                             <a href="/detail/{$movie.sdde}"><img
                                 src="//www.seedmm.fun/pics/thumb/{:str_replace('_b', '', $movie.cover)}" alt=""

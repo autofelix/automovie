@@ -9,16 +9,9 @@
   <script src="{__INDEX_STATIC__}/js/bootstrap.js"></script>
   <!-- App -->
   <script src="{__INDEX_STATIC__}/js/app.js"></script>
-  <script src="{__INDEX_STATIC__}/js/jquery.lazyload.min.js"></script>
   <script src="{__INDEX_STATIC__}/js/viewer/viewer-jquery.min.js"></script>
   <script>
     $('#viewer-picture').viewer({
       url: 'data-original'
-    });
-
-    $("img").lazyload({
-      placeholder: "{__INDEX_STATIC__}/images/loading.gif",
-      effect: "fadeIn",
-      threshold: 200
     });
   </script>
