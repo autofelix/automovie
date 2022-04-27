@@ -18,7 +18,7 @@
                 <div class="col-sm-9">
                   <div class="blog-post">
                     <div class="post-item">
-                      <div class="post-media viewer-picture">
+                      <div class="post-media">
                         {if $movie.type == 1}
                         <img src="//www.seedmm.fun/imgs/cover/{$movie.cover}" class="img-full">
                         {else/}
@@ -36,7 +36,7 @@
                     </div>
                   </div>
                   {if $movie.previews > 0}
-                  <div>
+                  <div id="viewer-picture">
                     {for start='1' end='$movie.previews'}
                     {if strpos($movie.original_preview, 'http') === 0 }
                     <img data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}'
