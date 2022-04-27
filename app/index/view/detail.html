@@ -18,8 +18,12 @@
                 <div class="col-sm-9">
                   <div class="blog-post">
                     <div class="post-item">
-                      <div class="post-media">
+                      <div class="post-media viewer-picture">
+                        {if $movie.type == 1}
+                        <img src="//www.seedmm.fun/imgs/cover/{$movie.cover}" class="img-full">
+                        {else/}
                         <img src="//www.seedmm.fun/pics/cover/{$movie.cover}" class="img-full">
+                        {/if}
                       </div>
                       <div class="caption wrapper-lg">
                         <h2 class="post-title">{$movie.title}</h2>
@@ -32,13 +36,17 @@
                     </div>
                   </div>
                   {if $movie.previews > 0}
-                  <div id="viewer-picture">
+                  <div>
                     {for start='1' end='$movie.previews'}
-                      {if strpos($movie.original_preview, 'http') === 0 }
-                        <img data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}' alt="" width="100" style="margin: .5rem;">
-                      {else/}
-                        <img data-original='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.original_preview)}' alt="" width="100" style="margin: .5rem;">
-                      {/if}
+                    {if strpos($movie.original_preview, 'http') === 0 }
+                    <img data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}'
+                      src='//www.seedmm.fun/{:str_replace("jp-1", "jp-$i", $movie.thumb_preview)}' alt="" width="100"
+                      style="margin: .5rem;">
+                    {else/}
+                    <img data-original='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.original_preview)}'
+                      src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}' alt="" width="100"
+                      style="margin: .5rem;">
+                    {/if}
                     {/for}
                   </div>
                   {/if}
@@ -79,7 +87,7 @@
                           <td>
                             <a href="magnet:?xt=urn:btih:{$magnetic.magnet}">
                               <i class="icon-arrow-down" data-toggle="tooltip" data-placement="right"
-                              data-original-title="下载"></i>
+                                data-original-title="下载"></i>
                             </a>
                           </td>
                         </tr>
@@ -125,9 +133,15 @@
                                 </a>
                               </div>
                             </div>
+                            {if $movie.type == 1}
+                            <a href="/detail/{$movie.sdde}"><img
+                                src="//www.seedmm.fun/imgs/thumbs/{:str_replace('_b', '', $movie.cover)}" alt=""
+                                class="r r-2x img-full"></a>
+                            {else/}
                             <a href="/detail/{$movie.sdde}"><img
                                 src="//www.seedmm.fun/pics/thumb/{:str_replace('_b', '', $movie.cover)}" alt=""
                                 class="r r-2x img-full"></a>
+                            {/if}
                           </div>
                           <div class="padder-v">
                             <a href="/detail/{$movie.sdde}" class="text-ellipsis">{$movie.title}</a>
