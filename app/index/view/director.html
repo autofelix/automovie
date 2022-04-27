@@ -29,21 +29,21 @@
                         </span>
                       </h2>
                       <div class="row row-sm">
-                        {foreach $stars as $star}
+                        {foreach $directors as $director}
                         <div class="col-xs-6 col-sm-4 col-md-1">
                           <div class="item">
                             <div class="pos-rlt">
-                              <a href="/profile/sowar/{$star.hash}"><img src="//www.seedmm.fun/pics/actress/{$star.avatar}" alt="" class="r r-2x" width="100"></a>
+                              <a href="/profile/sowar/{$director.hash}"><img src="//www.seedmm.fun/pics/actress/nowprinting.gif" alt="" class="r r-2x" width="100"></a>
                             </div>
                             <div class="padder-v">
-                              <a href="/profile/sowar/{$star.hash}" class="text-ellipsis">{$star.name}</a>
+                              <a href="/profile/sowar/{$director.hash}" class="text-ellipsis">{$director.name}</a>
                             </div>
                           </div>
                         </div>
                         {/foreach}
                       </div>
                       <div style="text-align: center;">
-                        {$stars|raw}
+                        {$directors|raw}
                       </div>
                     </section>
                   </section>

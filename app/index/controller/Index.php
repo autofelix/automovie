@@ -8,6 +8,9 @@ use think\Request;
 
 use app\model\Movies;
 use app\model\Stars;
+use app\model\Producers;
+use app\model\Publishers;
+use app\model\Directors;
 
 
 class Index
@@ -34,19 +37,19 @@ class Index
 
     public function director()
     {
-        $stars = Stars::where(['type' => 0])->paginate(60);
-        return View::fetch('index@director', compact('stars'));
+        $directors = Directors::paginate(60);
+        return View::fetch('index@director', compact('directors'));
     }
 
     public function publisher()
     {
-        $stars = Stars::where(['type' => 0])->paginate(60);
-        return View::fetch('index@publisher', compact('stars'));
+        $publishers = Publishers::paginate(60);
+        return View::fetch('index@publisher', compact('publishers'));
     }
 
     public function producer()
     {
-        $stars = Stars::where(['type' => 0])->paginate(60);
-        return View::fetch('index@producer', compact('stars'));
+        $producers = Producers::paginate(60);
+        return View::fetch('index@producer', compact('producers'));
     }
 }
