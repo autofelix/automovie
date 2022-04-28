@@ -1,17 +1,39 @@
 <footer class="footer bg-light">
-    <div class="alert alert-info" style="margin-bottom:0;">
-      备案号：<strong>粤CT-234293</strong> 版权：<strong>&copy; 2022 AutoMovie.</strong> All Rights Reserved By autofelix.
-    </div>
+  <div class="alert alert-info" style="margin-bottom:0;">
+    备案号：<strong>粤CT-234293</strong> 版权：<strong>&copy; 2022 AutoMovie.</strong> All Rights Reserved By autofelix.
+  </div>
 </footer>
 
 <script src="{__INDEX_STATIC__}/js/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="{__INDEX_STATIC__}/js/bootstrap.js"></script>
-  <!-- App -->
-  <script src="{__INDEX_STATIC__}/js/app.js"></script>
-  <script src="{__INDEX_STATIC__}/js/viewer/viewer-jquery.min.js"></script>
-  <script>
-    $('#viewer-picture').viewer({
-      url: 'data-original'
+<!-- Bootstrap -->
+<script src="{__INDEX_STATIC__}/js/bootstrap.js"></script>
+<!-- App -->
+<script src="{__INDEX_STATIC__}/js/app.js"></script>
+<script src="{__INDEX_STATIC__}/js/message.min.js"></script>
+<script src="{__INDEX_STATIC__}/js/viewer/viewer-jquery.min.js"></script>
+<script>
+  $('#viewer-picture').viewer({
+    url: 'data-original'
+  });
+
+  function gather(hash, type) {
+    if (!hash || !type) {
+      return VtMessage.error('参数错误');
+    }
+
+    $.ajax({
+      url: "{:url('/collect')}",
+      data: {
+        'hash': hash,
+        'type': type
+      },
+      type: 'post',
+      success: function (data) {
+
+      },
+      error: function () {
+
+      }
     });
-  </script>
+  }
+</script>

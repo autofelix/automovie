@@ -16,6 +16,7 @@ Route::get('/publisher', '\app\index\controller\Index@publisher');
 Route::get('/producer', '\app\index\controller\Index@producer');
 Route::get('/forum', '\app\index\controller\Forum@index');
 Route::get('/search', '\app\index\controller\Index@search');
+Route::post('/collect', '\app\index\controller\Collect@star');
 Route::get('/detail/:sdde', '\app\index\controller\Detail@index')->pattern(['sdde' => '[\w-]+']);
 
 Route::group('/sort', function () {

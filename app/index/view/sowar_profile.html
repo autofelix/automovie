@@ -35,13 +35,13 @@
                             <div class="col-xs-6">
                               <a href="#">
                                 <span class="m-b-xs h4 block">245</span>
-                                <small class="text-muted">Followers</small>
+                                <small class="text-muted">关注</small>
                               </a>
                             </div>
                             <div class="col-xs-6">
                               <a href="#">
                                 <span class="m-b-xs h4 block">55</span>
-                                <small class="text-muted">Following</small>
+                                <small class="text-muted">收藏</small>
                               </a>
                             </div>
                           </div>
@@ -49,14 +49,14 @@
                         <div class="btn-group btn-group-justified m-b">
                           <a class="btn btn-success btn-rounded" data-toggle="button">
                             <span class="text">
-                              <i class="fa fa-eye"></i> Follow
+                              <i class="fa fa-eye"></i> 我要关注
                             </span>
                             <span class="text-active">
-                              <i class="fa fa-eye"></i> Following
+                              <i class="fa fa-eye"></i> 已关注
                             </span>
                           </a>
-                          <a class="btn btn-dark btn-rounded">
-                            <i class="fa fa-comment-o"></i> Chat
+                          <a class="btn btn-dark btn-rounded" onclick="gather('{$star.hash}', '{$star.type}')">
+                            <i class="fa fa-comment-o"></i> 作品采集
                           </a>
                         </div>
                         <div>
