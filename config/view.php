@@ -24,6 +24,7 @@ return [
     'taglib_end' => '}',
     // 静态路径配置
     'tpl_replace_string' => [
+        '{__STATIC__}' => '/static',
         '{__INDEX_STATIC__}' => '/static/index',
     ]
 ];

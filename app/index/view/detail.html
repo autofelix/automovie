@@ -38,15 +38,15 @@
                   {if $movie.previews > 0}
                   <div id="viewer-picture">
                     {for start='1' end='$movie.previews'}
-                    {if strpos($movie.original_preview, 'http') === 0 }
-                    <img data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}'
-                      src='//www.seedmm.fun/{:str_replace("jp-1", "jp-$i", $movie.thumb_preview)}' alt="" width="100"
-                      style="margin: .5rem;">
-                    {else/}
-                    <img data-original='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.original_preview)}'
-                      src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}' alt="" width="100"
-                      style="margin: .5rem;">
-                    {/if}
+                      {if strpos($movie.original_preview, 'http') === 0 }
+                      <img data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}'
+                        src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}' alt="" width="100"
+                        style="margin: .5rem;">
+                      {else/}
+                      <img data-original='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.original_preview)}'
+                        src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}' alt="" width="100"
+                        style="margin: .5rem;">
+                      {/if}
                     {/for}
                   </div>
                   {/if}
