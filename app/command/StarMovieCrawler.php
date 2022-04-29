@@ -194,7 +194,7 @@ class StarMovieCrawler extends Command
                             if ($hash) {
                                 $magnet_url = "https://www.seedmm.fun/ajax/uncledatoolsbyajax.php?gid={$hash}&lang=zh&uc={$uc}";
                                 //获取磁力
-                                $insert_magnet_data = QueryList::get($magnet_url, null, [
+                                $magnets = QueryList::get($magnet_url, null, [
                                     'headers' => $this->headers
                                 ])
                                     ->rules([
@@ -202,8 +202,12 @@ class StarMovieCrawler extends Command
                                             return trim($name);
                                         }],
                                         'magnet' => ['td:eq(0)>a', 'href', '', function ($magnet) {
-                                            preg_match('#magnet\:\?xt\=urn\:btih\:(.*?)\&dn#', $magnet, $out);
-                                            return trim($out[1]);
+                                            if ($magnet) {
+                                                preg_match('#magnet\:\?xt\=urn\:btih\:(.*?)\&dn#', $magnet, $out);
+                                                return trim($out[1]);
+                                            }
+
+                                            return $magnet;
                                         }],
                                         'is_hd' => ['a.btn.btn-mini-new.btn-primary', 'html', '', function ($is_hd) {
                                             return $is_hd ? 1 : 0;
@@ -224,8 +228,14 @@ class StarMovieCrawler extends Command
                                         return $item;
                                     });
 
-                                if (count($insert_magnet_data) > 0) $insert_movie_data['is_magnetic'] = 1;
+                                foreach ($magnets as $magnet) {
+                                    if ($magnet['magnet'] && $magnet['name']) {
+                                        $insert_magnet_data[] = $magnet;
+                                    }
+                                }
                             }
+
+                            if (count($insert_magnet_data) > 0) $insert_movie_data['is_magnetic'] = 1;
 
                             Db::transaction(function () use ($insert_movie_data, $insert_magnet_data) {
                                 if ($insert_movie_data) Db::name('movies')->insert($insert_movie_data);
