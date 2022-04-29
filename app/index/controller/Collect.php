@@ -16,6 +16,10 @@ class Collect
 
         $output = Console::call('spider:star_movie', [$hash, $type]);
 
-        return $output->fetch();
+        return Json([
+            'status' => 200,
+            'message' => '采集成功',
+            'output' => $output
+        ]);
     }
 }

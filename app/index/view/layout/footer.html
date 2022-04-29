@@ -21,6 +21,7 @@
       return VtMessage.error('参数错误');
     }
 
+    VtMessage.info('开始采集,请耐心等候~');
     $.ajax({
       url: "{:url('/collect')}",
       data: {
@@ -28,11 +29,15 @@
         'type': type
       },
       type: 'post',
-      success: function (data) {
-
+      success: function (res) {
+        if (res.status == 200) {
+          VtMessage.success(res.message);
+        } else {
+          VtMessage.info(res.message);
+        }
       },
-      error: function () {
-
+      error: function (res) {
+        VtMessage.error(res.data);
       }
     });
   }
