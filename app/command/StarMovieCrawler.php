@@ -154,10 +154,10 @@ class StarMovieCrawler extends Command
                             $star_list = implode(',', $stars);
 
                             # 超过长度截取
-                            if(mb_strlen($star_list) > 255) {
+                            if (mb_strlen($star_list) > 255) {
                                 $star_list = mb_substr($star_list, 0, 255);
                                 $pos = strripos($star_list, ',');
-                                $star_list =  mb_substr($star_list, 0, $pos);
+                                $star_list = mb_substr($star_list, 0, $pos);
                             }
 
                             $insert_movie_data['stars'] = $star_list;
@@ -170,7 +170,7 @@ class StarMovieCrawler extends Command
                                 };
                                 if (strpos($rt_info, '發行日期') !== false) {
                                     $out = explode('</span> ', $rt_info);
-                                    $insert_movie_data['publish_date'] = trim(end($out));
+                                    $insert_movie_data['publish_date'] = trim(end($out)) != '0000-00-00' ? trim(end($out)) : '1970-01-01';
                                 };
                                 if (strpos($rt_info, '長度') !== false) {
                                     preg_match('#</span> (\d+)分鐘#', $rt_info, $out);
@@ -228,6 +228,10 @@ class StarMovieCrawler extends Command
                                             return trim($size);
                                         }],
                                         'publish_date' => ['td:eq(2)>a', 'text', '', function ($publish_date) {
+                                            if (trim($publish_date) == '0000-00-00') {
+                                                return '1970-01-01';
+                                            }
+
                                             return trim($publish_date);
                                         }]
                                     ])
