@@ -151,7 +151,16 @@ class StarMovieCrawler extends Command
                                 $star = end($parts);
                             }
 
-                            $insert_movie_data['stars'] = implode(',', $stars);
+                            $star_list = implode(',', $stars);
+
+                            # 超过长度截取
+                            if(mb_strlen($star_list) > 255) {
+                                $star_list = mb_substr($star_list, 0, 255);
+                                $pos = strripos($star_list, ',');
+                                $star_list =  mb_substr($star_list, 0, $pos);
+                            }
+
+                            $insert_movie_data['stars'] = $star_list;
                             $insert_movie_data['genres'] = implode(',', $genres->all());
 
                             foreach ($base_info as $rt_info) {
