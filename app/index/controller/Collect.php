@@ -19,7 +19,7 @@ class Collect
         return Json([
             'status' => 200,
             'message' => '采集成功',
-            'output' => $output
+            'output' => $output->fetch()
         ]);
     }
 }
