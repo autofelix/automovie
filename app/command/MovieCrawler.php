@@ -26,16 +26,28 @@ class MovieCrawler extends Command
 
     protected function execute(Input $input, Output $output)
     {
-        $stars = Stars::where(['type' => 1])->field('hash,type')->select()->toArray();
+        $stars = Stars::where([
+            'type' => 0
+        ])
+            ->where('id', '>=', 19954)
+            ->field('hash,type')
+            ->select()
+            ->toArray();
+
+        $count = count($stars);
+        $step = 0;
 
         foreach ($stars as $star) {
-            try{
+            $step += 1;
+            try {
                 $output = Console::call('spider:star_movie', [$star['hash'], (string)$star['type']]);
 
                 $output->writeln($output->fetch());
-            } catch (Exception $e) {
+            } catch (\Throwable $e) {
                 var_dump($e->getMessage());
             }
+
+            var_dump("----正在执行{$step}/{$count}个任务-----");
         }
     }
 }

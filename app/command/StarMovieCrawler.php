@@ -93,10 +93,11 @@ class StarMovieCrawler extends Command
                 foreach ($result as $item) {
                     if ($item['info'] && $item['title'] && $item['href']) {
                         //去除重复影片数据
+                        $is_exists = 1;
                         $is_exists = Db::name('movies')->where([
                             'sdde' => $item['info'][0],
                             'type' => $type,
-                        ])->whereLike('stars', "%{$star_hash}%")->find();
+                        ])->whereLike('stars', "%{$star_hash}%")->count();
 
                         if (!$is_exists) {
                             $insert_movie_data = [
