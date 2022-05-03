@@ -27,11 +27,9 @@ Route::group('/sort', function () {
     Route::get('/hd', 'app\index\controller\Sort@hd');
     Route::get('/subtitle', 'app\index\controller\Sort@subtitle');
 
-    Route::get('/star/sowar/age', 'app\index\controller\Sort@star_sowar_age');
     Route::get('/star/sowar/avatar', 'app\index\controller\Sort@star_sowar_avatar');
     Route::get('/star/sowar/height', 'app\index\controller\Sort@star_sowar_height');
     Route::get('/star/sowar/cupsize', 'app\index\controller\Sort@star_sowar_cupsize');
-    Route::get('/star/infantry/age', 'app\index\controller\Sort@star_infantry_age');
     Route::get('/star/infantry/avatar', 'app\index\controller\Sort@star_infantry_avatar');
     Route::get('/star/infantry/height', 'app\index\controller\Sort@star_infantry_height');
     Route::get('/star/infantry/cupsize', 'app\index\controller\Sort@star_infantry_cupsize');

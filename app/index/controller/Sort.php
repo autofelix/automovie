@@ -64,17 +64,6 @@ class Sort
         return View::fetch('index@index', compact('movies'));
     }
 
-    public function star_sowar_age()
-    {
-        $stars = Stars::where([
-            'type' => 0
-        ])
-            ->order('birthday', 'desc')
-            ->paginate(60);
-
-        return View::fetch('index@star', compact('stars'));
-    }
-
     public function star_sowar_avatar()
     {
         $stars = Stars::where([
@@ -106,17 +95,6 @@ class Sort
             ->paginate(60);
 
         return View::fetch('index@star', compact('stars'));
-    }
-
-    public function star_infantry_age()
-    {
-        $stars = Stars::where([
-            'type' => 1
-        ])
-            ->order('birthday', 'desc')
-            ->paginate(60);
-
-        return View::fetch('index@infantry', compact('stars'));
     }
 
     public function star_infantry_avatar()
