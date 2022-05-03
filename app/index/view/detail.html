@@ -161,70 +161,80 @@
                   <h5 class="font-bold">基本信息</h5>
                   <ul class="list-group">
                     <li class="list-group-item">
-                      <a href="#">
+                      <a href="//www.sokankan104.cc/search.html?name={$movie.sdde}" target="_blank">
                         番号
                         <span class="badge pull-right">{$movie.sdde}</span>
                       </a>
                     </li>
                     <li class="list-group-item">
-                      <a href="#">
+                      <a href="javascript:;">
                         时长
                         <span class="badge pull-right">{$movie.duration} 分钟</span>
                       </a>
                     </li>
+                    {if $director}
                     <li class="list-group-item">
-                      <a href="#">
+                      <a href="/">
                         导演
-                        <span class="badge pull-right">{$movie.director}</span>
+                        <span class="badge pull-right">{$director.name}</span>
                       </a>
                     </li>
-
+                    {/if}
+                    {if $publisher}
                     <li class="list-group-item">
                       <a href="#">
                         发行商
-                        <span class="badge pull-right">{$movie.publisher}</span>
+                        <span class="badge pull-right">{$publisher.name}</span>
                       </a>
                     </li>
+                    {/if}
+                    {if $producer}
                     <li class="list-group-item">
                       <a href="#">
                         制片商
-                        <span class="badge pull-right">{$movie.producer}</span>
+                        <span class="badge pull-right">{$producer.name}</span>
                       </a>
                     </li>
+                    {/if}
                   </ul>
+                  {if count($genres) > 0 }
                   <div class="tags m-b-lg l-h-2x">
-                    <a href="#" class="label bg-info">技术</a>
-                    <a href="#" class="label bg-info">PHP</a>
-                    <a href="#" class="label bg-info">Apple</a>
-                    <a href="#" class="label bg-info">Less</a>
-                    <a href="#" class="label bg-info">Theme</a>
-                    <a href="#" class="label bg-info">CMS</a>
+                    {foreach $genres as $genre}
+                      {if $genre.type == 1}
+                      <a href="/genre/infantry/{$genre.hash}" class="label bg-info">{$genre.name}</a>
+                      {else /}
+                      <a href="/genre/sowar/{$genre.hash}" class="label bg-info">{$genre.name}</a>
+                      {/if}
+                    {/foreach}
                   </div>
+                  {/if}
+                  {if count($stars) > 0 }
                   <h5 class="font-bold">主演</h5>
                   <div>
+                    {foreach $stars as $star}
                     <article class="media">
                       <a class="pull-left thumb thumb-wrapper m-t-xs">
-                        <img src="images/m1.jpg">
+                        {if $star.type == 1 }
+                        <img src="//www.seedmm.fun/imgs/actress/{$star.avatar}">
+                        {else/}
+                        <img src="//www.seedmm.fun/pics/actress/{$star.avatar}">
+                        {/if}
                       </a>
                       <div class="media-body">
-                        <a href="#" class="font-semibold">胡歌</a>
+                        {if $star.type == 1 }
+                        <a href="/star/infantry/{$star.hash}" class="font-semibold">{$star.name}</a>
+                        {else/}
+                        <a href="/star/sowar/{$star.hash}" class="font-semibold">{$star.name}</a>
+                        {/if}
                         <div class="text-xs block m-t-xs">
-                          <a href="#">1990-02-21</a>
-                          中国西安
+                          {$star.birthday} {$star.hometown}
                         </div>
                       </div>
                     </article>
                     <div class="line"></div>
-                    <article class="media m-t-none">
-                      <a class="pull-left thumb thumb-wrapper m-t-xs">
-                        <img src="images/m2.jpg">
-                      </a>
-                      <div class="media-body">
-                        <a href="#" class="font-semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a>
-                        <div class="text-xs block m-t-xs"><a href="#">Design</a> 2 hours ago</div>
-                      </div>
-                    </article>
+                    {/foreach}
                   </div>
+                  {/if}
                 </div>
               </div>
             </section>
