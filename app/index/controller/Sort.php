@@ -6,6 +6,7 @@ namespace app\index\controller;
 use think\facade\View;
 
 use app\model\Movies;
+use app\model\Stars;
 
 class Sort
 {
@@ -61,5 +62,93 @@ class Sort
             ->paginate(24);
 
         return View::fetch('index@index', compact('movies'));
+    }
+
+    public function star_sowar_age()
+    {
+        $stars = Stars::where([
+            'type' => 0
+        ])
+            ->order('birthday', 'desc')
+            ->paginate(60);
+
+        return View::fetch('index@star', compact('stars'));
+    }
+
+    public function star_sowar_avatar()
+    {
+        $stars = Stars::where([
+            'type' => 0
+        ])
+            ->where('avatar', '<>', 'nowprinting.gif')
+            ->paginate(60);
+
+        return View::fetch('index@star', compact('stars'));
+    }
+
+    public function star_sowar_height()
+    {
+        $stars = Stars::where([
+            'type' => 0
+        ])
+            ->order('height', 'desc')
+            ->paginate(60);
+
+        return View::fetch('index@star', compact('stars'));
+    }
+
+    public function star_sowar_cupsize()
+    {
+        $stars = Stars::where([
+            'type' => 0
+        ])
+            ->order('cupsize', 'desc')
+            ->paginate(60);
+
+        return View::fetch('index@star', compact('stars'));
+    }
+
+    public function star_infantry_age()
+    {
+        $stars = Stars::where([
+            'type' => 1
+        ])
+            ->order('birthday', 'desc')
+            ->paginate(60);
+
+        return View::fetch('index@infantry', compact('stars'));
+    }
+
+    public function star_infantry_avatar()
+    {
+        $stars = Stars::where([
+            'type' => 1
+        ])
+            ->where('avatar', '<>', 'nowprinting.gif')
+            ->paginate(60);
+
+        return View::fetch('index@infantry', compact('stars'));
+    }
+
+    public function star_infantry_height()
+    {
+        $stars = Stars::where([
+            'type' => 1
+        ])
+            ->order('height', 'desc')
+            ->paginate(60);
+
+        return View::fetch('index@infantry', compact('stars'));
+    }
+
+    public function star_infantry_cupsize()
+    {
+        $stars = Stars::where([
+            'type' => 1
+        ])
+            ->order('cupsize', 'desc')
+            ->paginate(60);
+
+        return View::fetch('index@infantry', compact('stars'));
     }
 }
