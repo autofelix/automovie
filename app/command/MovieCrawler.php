@@ -27,9 +27,8 @@ class MovieCrawler extends Command
     protected function execute(Input $input, Output $output)
     {
         $stars = Stars::where([
-            'type' => 0
+            'type' => 1
         ])
-            ->where('id', '>=', 19954)
             ->field('hash,type')
             ->select()
             ->toArray();
