@@ -119,6 +119,12 @@
                         <div class="item">
                           <div class="pos-rlt">
                             <div class="top">
+                              {if $movie.type == 0}
+                              <span class="pull-right m-t-sm m-r-sm badge bg-primary">有码</span>
+                              {/if}
+                              {if $movie.type == 1}
+                              <span class="pull-right m-t-sm m-r-sm badge bg-primary">无码</span>
+                              {/if}
                               {if $movie.is_hd == 1}
                               <span class="pull-right m-t-sm m-r-sm badge bg-info">HD</span>
                               {/if}
