@@ -30,7 +30,11 @@ class Sort
 
     public function infantry()
     {
-        $movies = Movies::where(['type' => 1])
+        $movies = Movies::where([
+            'type' => 1,
+            'is_hd' => 1,
+            'is_magnetic' => 1
+        ])
             ->order('publish_date', 'desc')
             ->paginate(24);
 
