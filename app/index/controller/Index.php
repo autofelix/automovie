@@ -27,6 +27,7 @@ class Index
         $keywords = $request->param('keywords');
 
         $movies = Movies::whereLike('title', "%{$keywords}%")
+            ->order('publish_date', 'desc')
             ->paginate([
                 'list_rows' => 24,
                 'query' => $request->param()
