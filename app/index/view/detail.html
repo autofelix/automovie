@@ -40,11 +40,11 @@
                     {for start='1' end='$movie.previews'}
                       {if strpos($movie.original_preview, 'http') === 0 }
                       <img data-original='{:str_replace("jp-1", "jp-$i", $movie.original_preview)}'
-                        src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}' alt="" width="100"
+                        src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}' alt="" width="126"
                         style="margin: .5rem;">
                       {else/}
                       <img data-original='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.original_preview)}'
-                        src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}' alt="" width="100"
+                        src='//www.seedmm.fun/{:str_replace("_1", "_$i", $movie.thumb_preview)}' alt="" width="126"
                         style="margin: .5rem;">
                       {/if}
                     {/for}
@@ -136,11 +136,11 @@
                             {if $movie.type == 1}
                             <a href="/detail/{$movie.sdde}"><img
                                 src="//www.seedmm.fun/imgs/thumbs/{:str_replace('_b', '', $movie.cover)}" alt=""
-                                class="r r-2x img-full"></a>
+                                class="r r-2x img-full" style="height:25rem;width:100%"></a>
                             {else/}
                             <a href="/detail/{$movie.sdde}"><img
                                 src="//www.seedmm.fun/pics/thumb/{:str_replace('_b', '', $movie.cover)}" alt=""
-                                class="r r-2x img-full"></a>
+                                class="r r-2x img-full" style="height:25rem;width:100%"></a>
                             {/if}
                           </div>
                           <div class="padder-v">

@@ -6,6 +6,7 @@ return [
     // 指令定义
     'commands' => [
         'spider:star' => 'app\command\StarCrawler',
+        'spider:deweight' => 'app\command\DeWeight',
         'spider:movie' => 'app\command\MovieCrawler',
         'spider:genre' => 'app\command\GenreCrawler',
         'spider:star_movie' => 'app\command\StarMovieCrawler',
